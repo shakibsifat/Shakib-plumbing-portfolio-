@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakib — Portfolio</title>
+<meta name="description" content="Personal portfolio of Shakib — Plumbing & Pipe Fitting, Digital Learning and Creator from Bangladesh.">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#070b16;--card:#0f172a;--card2:#111c33;--text:#eef2ff;--muted:#9aa8c7;--accent:#38bdf8;--accent2:#f59e0b;--green:#22c55e}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 5%;background:rgba(7,11,22,.75);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .logo{font-size:22px;font-weight:800;letter-spacing:.5px}.logo span{color:var(--accent)}
+  .links{display:flex;gap:22px;font-size:15px}
+  .links a{color:var(--muted)}.links a:hover{color:#fff}
+  .btn{display:inline-block;padding:12px 22px;border-radius:999px;background:var(--accent);color:#04121f;font-weight:700}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+  /* HERO + 3D */
+  header{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 5% 70px;overflow:hidden}
+  #bg3d{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+  .hero-glow{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.28),transparent 65%);top:-80px;right:-80px;z-index:0;animation:floaty 7s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(28px)}}
+  .hero{position:relative;z-index:2;max-width:760px}
+  .badge{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(56,189,248,.15);border:1px solid rgba(56,189,248,.4);color:#bae6fd;font-size:14px;margin-bottom:18px}
+  h1{font-size:clamp(42px,7vw,72px);line-height:.95;letter-spacing:-1px}
+  h1 span{background:linear-gradient(90deg,#38bdf8,#a78bfa,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:18px;line-height:1.7;margin:20px 0 28px;max-width:620px}
+  .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+  /* Floating 3D cubes */
+  .cube-wrap{position:absolute;right:6%;top:24%;z-index:1;width:220px;height:220px;perspective:900px;display:block}
+  .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;animation:spin3d 14s linear infinite}
+  @keyframes spin3d{from{transform:rotateX(-18deg) rotateY(0)}to{transform:rotateX(-18deg) rotateY(360deg)}}
+  .face{position:absolute;inset:0;border:2px solid rgba(56,189,248,.7);background:rgba(56,189,248,.12);display:flex;align-items:center;justify-content:center;font-size:52px;font-weight:800;backdrop-filter:blur(2px)}
+  .f1{transform:translateZ(110px)}.f2{transform:rotateY(180deg) translateZ(110px)}.f3{transform:rotateY(90deg) translateZ(110px)}.f4{transform:rotateY(-90deg) translateZ(110px)}.f5{transform:rotateX(90deg) translateZ(110px)}.f6{transform:rotateX(-90deg) translateZ(110px)}
+  .mini-cube{position:absolute;width:70px;height:70px;perspective:600px;z-index:1}
+  .mini-cube .cube{animation-duration:9s;animation-direction:reverse}
+  .mini-cube .face{font-size:22px;border-color:rgba(245,158,11,.7);background:rgba(245,158,11,.12)}
+  .mc1{left:8%;bottom:18%}.mc2{right:28%;bottom:10%}
+  /* SECTIONS */
+  section{padding:84px 5%;max-width:1100px;margin:auto}
+  .kicker{color:var(--accent);font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:13px}
+  h2{font-size:clamp(28px,4vw,42px);margin:10px 0 14px}
+  .lead{color:var(--muted);line-height:1.7;max-width:720px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:32px}
+  .card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:24px;transform-style:preserve-3d;transition:transform .25s ease,border-color .25s ease;will-change:transform}
+  .card:hover{border-color:rgba(56,189,248,.6)}
+  .card h3{font-size:19px;margin:12px 0 8px}
+  .card p{color:var(--muted);line-height:1.65;font-size:15px}
+  .icon{font-size:34px}
+  .tag{display:inline-block;margin:6px 6px 0 0;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-size:13px}
+  .bar{height:9px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-top:10px}
+  .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#38bdf8,#22c55e);animation:grow 1.6s ease both}
+  @keyframes grow{from{width:0}}
+  .project{overflow:hidden;padding:0}
+  .project .thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:56px;background:linear-gradient(135deg,#0ea5e9,#6366f1,#f59e0b)}
+  .project .body{padding:22px}
+  .stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px}
+  .stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px 22px;min-width:150px}
+  .stat b{font-size:28px;display:block}.stat span{color:var(--muted);font-size:14px}
+  .contact-box{background:linear-gradient(135deg,#0ea5e9,#6366f1);border-radius:24px;padding:36px;text-align:center}
+  .contact-box h2{margin-top:0}.contact-box p{opacity:.9;line-height:1.7}
+  footer{text-align:center;color:var(--muted);padding:28px;font-size:14px}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:760px){.links{display:none}.cube-wrap{display:none}.mini-cube{display:none}header{padding-top:100px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#top">Shakib<span>.</span></a>
+  <div class="links">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#contact">Contact</a>
+  </div>
+  <a class="btn" href="#contact">Let's Talk</a>
+</nav>
+
+<header id="top">
+  <canvas id="bg3d"></canvas>
+  <div class="hero-glow"></div>
+
+  <!-- 3D rotating cube -->
+  <div class="cube-wrap" aria-hidden="true">
+    <div class="cube">
+      <div class="face f1">S</div><div class="face f2">🔧</div><div class="face f3">💧</div>
+      <div class="face f4">⚙️</div><div class="face f5">📐</div><div class="face f6">✦</div>
+    </div>
+  </div>
+  <div class="mini-cube mc1" aria-hidden="true"><div class="cube"><div class="face f1">◈</div><div class="face f2">◈</div><div class="face f3">◈</div><div class="face f4">◈</div><div class="face f5">◈</div><div class="face f6">◈</div></div></div>
+  <div class="mini-cube mc2" aria-hidden="true"><div class="cube"><div class="face f1">◆</div><div class="face f2">◆</div><div class="face f3">◆</div><div class="face f4">◆</div><div class="face f5">◆</div><div class="face f6">◆</div></div></div>
+
+  <div class="hero">
+    <span class="badge">👋 Hello, I'm from Bangladesh</span>
+    <h1>Hi, I'm <span>Shakib</span><br>Plumbing &amp;<br>Pipe Fitting Professional</h1>
+    <p>I learn, build and teach practical plumbing — from pipe joints and valves to safe work practice. I also build digital learning tools so students can learn by doing, not just by reading.</p>
+    <div class="hero-btns">
+      <a class="btn" href="#projects">View My Work →</a>
+      <a class="btn ghost" href="https://www.instagram.com/sh.akib.71" target="_blank" rel="noopener">Instagram ↗</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>15+</b><span>Chapters Covered</span></div>
+      <div class="stat"><b>4</b><span>Learning Outcomes</span></div>
+      <div class="stat"><b>10 min+</b><span>Learning Videos</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="reveal">
+  <span class="kicker">About Me</span>
+  <h2>Hands-on learner, builder &amp; teacher</h2>
+  <p class="lead">I'm Shakib from Bangladesh. My focus is Plumbing &amp; Pipe Fitting — NSDA Level-02, Making Pipe Joints. I like to understand a tool by holding it, a joint by making it, and a system by testing it. That's why I turn what I learn into videos, exams and a full learning platform for other students.</p>
+  <div class="grid">
+    <div class="card tilt"><div class="icon">🎯</div><h3>My Goal</h3><p>To become skilled, confident and job-ready in plumbing — and help other students learn the same practical way.</p></div>
+    <div class="card tilt"><div class="icon">🛠️</div><h3>How I Learn</h3><p>Practice first. Tools, fittings, safety gear, measurements — then theory, exam practice and real work.</p></div>
+    <div class="card tilt"><div class="icon">📚</div><h3>What I Build</h3><p>Learning platforms, online exams with picture questions, and Bengali video lessons for plumbing students.</p></div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <span class="kicker">Skills</span>
+  <h2>What I can do</h2>
+  <p class="lead">Practical skills I use every day — in the workshop and in digital learning.</p>
+  <div class="grid">
+    <div class="card tilt"><h3>🔧 Pipe Joints</h3><p>Making strong, leak-free joints with elbows, tees, sockets and unions.</p><div class="bar"><i style="width:90%"></i></div></div>
+    <div class="card tilt"><h3>💧 Valves</h3><p>Stopcock, ball, gate, butterfly, globe, check, foot, float and safety valves.</p><div class="bar"><i style="width:88%"></i></div></div>
+    <div class="card tilt"><h3>🛡️ Safety — OSH</h3><p>Helmet, gloves, goggles, mask, apron, safety shoes and safe work practice.</p><div class="bar"><i style="width:92%"></i></div></div>
+    <div class="card tilt"><h3>🧰 Tools &amp; Materials</h3><p>Pipe cutter, wrench, Teflon tape, measuring and proper tool storage.</p><div class="bar"><i style="width:86%"></i></div></div>
+    <div class="card tilt"><h3>🎥 Learning Videos</h3><p>Bengali video lessons with clear voice, subtitles and picture quizzes.</p><div class="bar"><i style="width:84%"></i></div></div>
+    <div class="card tilt"><h3>💻 Digital Learning</h3><p>Online exams, picture MCQs, results and student dashboards.</p><div class="bar"><i style="width:80%"></i></div></div>
+  </div>
+  <p style="margin-top:22px"><span class="tag">Plumbing</span><span class="tag">Pipe Fitting</span><span class="tag">NSDA Level-02</span><span class="tag">Valves</span><span class="tag">Safety</span><span class="tag">Teaching</span><span class="tag">Video Lessons</span></p>
+</section>
+
+<section id="projects" class="reveal">
+  <span class="kicker">Projects</span>
+  <h2>Things I've built &amp; learned</h2>
+  <div class="grid">
+    <article class="card project tilt"><div class="thumb">🏫</div><div class="body"><h3>SICIP Plumbing Academy</h3><p>Digital learning &amp; examination platform for Plumbing &amp; Pipe Fittings — registration, admin panel, chapters, PDFs and exams. I am the Super Admin.</p><p><span class="tag">Next.js</span><span class="tag">Supabase</span><span class="tag">Bangla + English</span></p></div></article>
+    <article class="card project tilt"><div class="thumb">📝</div><div class="body"><h3>Online Exam System</h3><p>Total online exam system with timed exams, auto-submission, negative marking, automatic results, leaderboard and picture-type questions.</p><p><span class="tag">Exam</span><span class="tag">Picture MCQ</span><span class="tag">Leaderboard</span></p></div></article>
+    <article class="card project tilt"><div class="thumb">🎬</div><div class="body"><h3>Valve Learning Videos</h3><p>Two-part Bengali cartoon video series — on/off &amp; control valves, then one-way &amp; safety valves — with a picture quiz at the end.</p><p><span class="tag">Bengali</span><span class="tag">Video</span><span class="tag">Quiz</span></p></div></article>
+    <article class="card project tilt"><div class="thumb">🔩</div><div class="body"><h3>NSDA Level-02 — Pipe Joints</h3><p>Learning series based on “Making Pipe Joints” — OSH, tools &amp; materials, making joints, and workplace cleanliness.</p><p><span class="tag">NSDA</span><span class="tag">Level-02</span><span class="tag">CBLM</span></p></div></article>
+  </div>
+</section>
+
+<section id="services" class="reveal">
+  <span class="kicker">Services</span>
+  <h2>How I can help</h2>
+  <div class="grid">
+    <div class="card tilt"><div class="icon">🔧</div><h3>Plumbing Help</h3><p>Practical guidance on pipe joints, fittings, valves and safe installation.</p></div>
+    <div class="card tilt"><div class="icon">🎓</div><h3>Learning Support</h3><p>Simple Bengali explanations, exam practice and picture-based learning for students.</p></div>
+    <div class="card tilt"><div class="icon">🎥</div><h3>Video Lessons</h3><p>Short, clear learning videos with subtitles and quizzes for plumbing topics.</p></div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <div class="contact-box">
+    <span class="kicker" style="color:#fff">Contact</span>
+    <h2>Let's work together</h2>
+    <p>Have a plumbing question, a learning idea, or want to collaborate?<br>Message me on Instagram — I reply as soon as I can.</p>
+    <br>
+    <a class="btn" style="background:#fff;color:#111" href="https://www.instagram.com/sh.akib.71" target="_blank" rel="noopener">Instagram: @sh.akib.71 ↗</a>
+    <p style="margin-top:16px;font-size:14px">📍 Bangladesh &nbsp;•&nbsp; Open to learning &amp; collaboration</p>
+  </div>
+</section>
+
+<footer>© 2026 Shakib — Personal Portfolio • Made with care in Bangladesh</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// --- 3D background: rotating torus knot + particles (Three.js) ---
+(function(){
+  try{
+    if(!window.THREE) return;
+    const canvas=document.getElementById('bg3d');
+    const renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true});
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(60,1,0.1,100); camera.position.z=7;
+    function resize(){
+      const w=canvas.clientWidth||window.innerWidth, h=canvas.clientHeight||window.innerHeight;
+      renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+    }
+    resize(); window.addEventListener('resize',resize);
+    const geo=new THREE.TorusKnotGeometry(1.5,0.42,140,16);
+    const mat=new THREE.MeshBasicMaterial({color:0x38bdf8,wireframe:true,transparent:true,opacity:0.28});
+    const knot=new THREE.Mesh(geo,mat); knot.position.x=2.6; knot.position.y=0.2; scene.add(knot);
+    const pGeo=new THREE.BufferGeometry(); const N=420; const pos=new Float32Array(N*3);
+    for(let i=0;i<N*3;i++) pos[i]=(Math.random()-0.5)*14;
+    pGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+    const pts=new THREE.Points(pGeo,new THREE.PointsMaterial({color:0xf59e0b,size:0.06,transparent:true,opacity:0.8}));
+    scene.add(pts);
+    let mx=0,my=0;
+    window.addEventListener('mousemove',e=>{mx=(e.clientX/window.innerWidth-0.5);my=(e.clientY/window.innerHeight-0.5);});
+    (function loop(){
+      requestAnimationFrame(loop);
+      knot.rotation.x+=0.003; knot.rotation.y+=0.005;
+      pts.rotation.y+=0.0012; pts.rotation.x+=0.0006;
+      camera.position.x+= (mx*0.8 - camera.position.x)*0.04;
+      camera.position.y+= (-my*0.5 - camera.position.y)*0.04;
+      camera.lookAt(scene.position);
+      renderer.render(scene,camera);
+    })();
+  }catch(e){/* 3D background is decorative — page still works without it */}
+})();
+// --- 3D tilt on cards ---
+document.querySelectorAll('.tilt').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5, y=(e.clientY-r.top)/r.height-0.5;
+    card.style.transform=`perspective(800px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';});
+});
+// --- Scroll reveal ---
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
